@@ -1,0 +1,36 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Deploy Salesforce",
+            "type": "shell",
+            "command": "sfdx force:mdapi:deploy -g -d ./src -w -1",
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            },
+            "options": {
+                "cwd": "${workspaceRoot}"
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": {
+                "owner": "apex",
+                "fileLocation": [
+                    "relative",
+                    "${workspaceFolder}"
+                ],
+                "pattern": {
+                    "regexp": "^(Warning|Error)\\s+(.*?)\\s+(.*?)\\s+(.*?)$",
+                    "file": 2,
+                    "severity": 1,
+                    "message": 4
+                }
+            }
+        }
+    ]
+}
